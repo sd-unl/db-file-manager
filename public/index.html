@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB File Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>DB Manager</h2>
+        <div class="upload-box">
+            <form action="/api/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" id="fileInput" required>
+                <button type="submit">⬆ Upload File</button>
+            </form>
+        </div>
+        <div class="stats">
+            <p>Storage: MongoDB</p>
+            <p>Mode: Binary (BSON)</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Files</h1>
+            <button onclick="loadFiles()">↻ Refresh</button>
+        </div>
+        
+        <table id="fileTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Size</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="fileList">
+                <!-- JS will populate this -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editorModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="editFileName">Editing...</span>
+                <span class="close" onclick="closeEditor()">×</span>
+            </div>
+            <textarea id="codeEditor"></textarea>
+            <div class="modal-footer">
+                <button onclick="saveFile()" class="save-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
